@@ -22,12 +22,22 @@ class Perceptron {
 	}
 	
 	guess(inputs) {
-		console.log(this.weights);
+		//console.log(this.weights);
 		var sum = 0;
 		for (let i = 0; i < this.weights.length; i++) {
 			sum += inputs[i] * this.weights[i];
 		}
 		var output = sign(sum);
 		return output;
+	}
+	
+	train(inputs, target) {
+		var guess = this.guess(inputs);
+		var error = target - guess;
+		
+		//tuning weights using supervised learning
+		for (var i = 0; i < this.weights.length; i++) {
+			this.weights[i] += error * inputs[i] * this.c;
+		}
 	}
 }
