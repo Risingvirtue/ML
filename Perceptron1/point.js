@@ -1,16 +1,24 @@
 function f(x) {
 	//y - mx + b
-	return 0.3*x +2;
+	return -0.3*x - 0.2;
 }
 
 
 class Point {
 	
-	constructor() {
-		this.x = Math.random() * 2 - 1;
-		this.y = Math.random() * 2 - 1;
+	constructor(x ,y) {
+		if (typeof x != "undefined" && typeof y != "undefined") {
+			this.x =x;
+			this.y = y;
+		} else {
+			this.x = Math.random() * 2 - 1;
+			this.y = Math.random() * 2 - 1;
+			
+			
+		}
 		
 		this.label = this.x > this.y ? 1 : -1;
+		
 	}
 	pixelX() {
 		return map(this.x, -1, 1, 0, width);
