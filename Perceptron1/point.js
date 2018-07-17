@@ -8,16 +8,17 @@ class Point {
 	
 	constructor(x ,y) {
 		if (typeof x != "undefined" && typeof y != "undefined") {
-			this.x =x;
+			this.x = x;
 			this.y = y;
 		} else {
 			this.x = Math.random() * 2 - 1;
 			this.y = Math.random() * 2 - 1;
-			
-			
 		}
+		this.b = 1;
+		var lineY = f(this.x);
 		
-		this.label = this.x > this.y ? 1 : -1;
+		
+		this.label = this.y > lineY ? -1 : 1;
 		
 	}
 	pixelX() {
@@ -38,6 +39,6 @@ class Point {
 		
 		var px = this.pixelX();
 		var py = this.pixelY();
-		ellipse(px, py, 32,32);
+		ellipse(px, py, 18, 18);
 	}
 }

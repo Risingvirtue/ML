@@ -8,14 +8,13 @@ function sign(n) {
 
 class Perceptron {
 	constructor(n, c) {
-		this.weights = new Array(n);
-		for (let i = 0; i < n; i++) {
+		this.weights = [];
+		for (var i = 0; i < n; i++) {
 			var rand = Math.random() * 2 - 1;
 			if (rand != 0) {
-				rand = rand / (Math.abs(rand));
+				rand = sign(rand) * rand;
 			}
-			this.weights[i] = rand;
-			
+			this.weights.push(rand);
 		}
 		
 		this.c = c; // learning rate
@@ -39,5 +38,15 @@ class Perceptron {
 		for (var i = 0; i < this.weights.length; i++) {
 			this.weights[i] += error * inputs[i] * this.c;
 		}
+		this.c = Math.max(0.3, this.c * 0.9);
+	}
+	
+	
+	guessY(x) {
+		var w0 = this.weights[0];
+		var w1 = this.weights[1];
+		var w2 = this.weights[2];
+		
+		return -(w2/ w1) - (w0/w1) * x;
 	}
 }

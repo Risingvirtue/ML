@@ -5,34 +5,45 @@ var p;
 var trainingIndex = 0;
 function setup() {
 	createCanvas(500, 500);
-	p = new Perceptron(2, 1);
+	p = new Perceptron(3, 1);
+	
 	for (var i =0; i< points.length;i++) {
 		points[i] = new Point();
 	}
 	
-	var inputs = [-1, 0.5];
+	var inputs = [-1, 0.5, 1];	
 	var guess = p.guess(inputs);
+	
 	//console.log(guess);
 	
 }
 
 function draw() {
-	//background(255);
+	background(255);
 	stroke(0);
 	//line(0,height, width, 0);
+	
 	var p1 = new Point(-1, f(-1));
 	var p2 = new Point(1, f(1));
 	
 	line(p1.pixelX(), p1.pixelY(), p2.pixelX(), p2.pixelY())
 	
 	
+	console.log(p.guessY(1));
+	var p3 = new Point(-1, p.guessY(-1));
+	var p4 = new Point(1, p.guessY(1));
+	
+	line(p3.pixelX(), p3.pixelY(), p4.pixelX(), p4.pixelY());
+
 	
 	points.forEach(function(point) {
 		point.show();
 	})
 	
+	
+	
 	points.forEach(function(point) {
-		var inputs = [point.x, point.y];
+		var inputs = [point.x, point.y, point.b];
 		var target = point.label;
 		//p.train(inputs, target);
 		
@@ -47,13 +58,16 @@ function draw() {
 		var px = point.pixelX();
 		var py = point.pixelY();
 		
-		ellipse(px, py, 32,32);
+		ellipse(px, py, 12,12);
 		
 	})
 	
 	if(trainingIndex < points.length) {
+		if (trainingIndex == 0) {
+			console.log(p.weights);
+		}
 		var point = points[trainingIndex];
-		p.train([point.x, point.y], point.label);
+		p.train([point.x, point.y, point.b], point.label);
 		trainingIndex++;
 	}
 	
