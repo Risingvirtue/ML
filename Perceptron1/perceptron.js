@@ -38,7 +38,7 @@ class Perceptron {
 		for (var i = 0; i < this.weights.length; i++) {
 			this.weights[i] += error * inputs[i] * this.c;
 		}
-		this.c = Math.max(0.3, this.c * 0.9);
+		//this.c = Math.max(0.1, this.c * 0.9);
 	}
 	
 	

@@ -1,11 +1,11 @@
 var width = 500;
 var height = 500;
-var points = new Array(100);
+var points = new Array(200);
 var p;
 var trainingIndex = 0;
 function setup() {
 	createCanvas(500, 500);
-	p = new Perceptron(3, 1);
+	p = new Perceptron(3, 0.01);
 	
 	for (var i =0; i< points.length;i++) {
 		points[i] = new Point();
