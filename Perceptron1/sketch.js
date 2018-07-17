@@ -19,7 +19,13 @@ function setup() {
 function draw() {
 	//background(255);
 	stroke(0);
-	line(0,0,width, height);
+	//line(0,height, width, 0);
+	var p1 = new Point(-1, f(-1));
+	var p2 = new Point(1, f(1));
+	line(p1.pixelX(), p1.pixelY(), p2.pixelX(), p2.pixelY())
+	
+	
+	
 	points.forEach(function(point) {
 		point.show();
 	})
@@ -37,7 +43,10 @@ function draw() {
 			fill(255,0,0);
 		}
 		noStroke();
-		ellipse(point.x, point.y, 4,4);
+		var px = point.pixelX();
+		var py = point.pixelY();
+		
+		ellipse(px, py, 32,32);
 		
 	})
 	
